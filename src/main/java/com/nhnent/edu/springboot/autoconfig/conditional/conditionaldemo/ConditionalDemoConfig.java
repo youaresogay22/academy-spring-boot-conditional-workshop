@@ -12,8 +12,8 @@ public class ConditionalDemoConfig {
      * application.properties 파일에 test property 가 존재하면 아래 빈을 생성한다.
      * @return
      */
-    //TODO (2) PropertyCheckCondition.class 를 조건으로 하는 @Conditional annotation 선언하기
     @Bean
+    @Conditional(PropertyCheckCondition.class)
     public SayYesComponent sayYesComponent() {
         return new SayYesComponent("Conditional");
     }
@@ -22,7 +22,7 @@ public class ConditionalDemoConfig {
      * 웹어플리케이션이면 아래 빈을 생성한다.
      * @return
      */
-    //TODO (3) 웹어플리케이션이면 동작하도록하는  @ConditionalOnXXXX annotation 선언하기
+    //TODO (2) 웹어플리케이션이면 동작하도록하는  @ConditionalOnXXXX annotation 선언하기
     @Bean
     public SayYesComponent sayYesComponentWeb() {
         return new SayYesComponent("ConditionalOnWebApplication");
@@ -32,7 +32,7 @@ public class ConditionalDemoConfig {
      * 웹어플리케이션이 아니면 아래 빈을 생성한다.
      * @return
      */
-    //TODO (4) 웹어플리케이션이면 동작하도록하는  @ConditionalOnXXXX annotation 선언하기
+    //TODO (3) 웹어플리케이션이 아니면 동작하도록하는  @ConditionalOnXXXX annotation 선언하기
     @Bean
     public SayYesComponent sayYesComponentNotWeb() {
         return new SayYesComponent("ConditionalOnNotWebApplication");
@@ -43,7 +43,7 @@ public class ConditionalDemoConfig {
      * sayYesComponentNotWeb 빈이 등록되어 있으면 아래 빈을 생성한다.
      * @return
      */
-    //TODO (5) sayYesComponentNotWeb 빈이 등록되어 있으면 동작하도록하는  @ConditionalOnXXXX annotation 선언하기
+    //TODO (4) sayYesComponentNotWeb 빈이 등록되어 있으면 동작하도록하는  @ConditionalOnXXXX annotation 선언하기
     @Bean
     public SayYesComponent sayYesComponentOnBean() {
         return new SayYesComponent("ConditionalOnBean");
