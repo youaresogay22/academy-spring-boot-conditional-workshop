@@ -27,12 +27,12 @@ public class ConditionalDemoConfigTest {
 
     @Test
     public void sayYesComponentWeb() {
-        assertThat(applicationContext.containsBean("sayYesComponentWeb"), is(FALSE));
+        assertThat(applicationContext.containsBean("sayYesComponentWeb"), is(TRUE));
     }
 
     @Test
     public void sayYesComponentNotWeb() {
-        assertThat(applicationContext.containsBean("sayYesComponentNotWeb"), is(TRUE));
+        assertThat(applicationContext.containsBean("sayYesComponentNotWeb"), is(FALSE));
     }
 
     @Test
@@ -52,7 +52,7 @@ public class ConditionalDemoConfigTest {
 
     @Test
     public void sayYesComponentOnMissingClass() {
-        assertThat(applicationContext.containsBean("sayYesComponentOnMissingClass"), is(FALSE));
+        assertThat(applicationContext.containsBean("sayYesComponentOnMissingClass"), is(TRUE));
     }
 
     @Test

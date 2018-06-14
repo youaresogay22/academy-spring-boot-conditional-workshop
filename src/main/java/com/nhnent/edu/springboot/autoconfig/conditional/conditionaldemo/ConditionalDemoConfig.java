@@ -1,6 +1,7 @@
 package com.nhnent.edu.springboot.autoconfig.conditional.conditionaldemo;
 
-import org.springframework.boot.SpringApplication;
+import com.nhnent.edu.springboot.autoconfig.conditional.conditionaldemo.component.SayNoComponent;
+import com.nhnent.edu.springboot.autoconfig.conditional.conditionaldemo.component.SayYesComponent;
 import org.springframework.boot.autoconfigure.condition.*;
 import org.springframework.context.annotation.*;
 import org.springframework.core.type.AnnotatedTypeMetadata;
@@ -18,11 +19,13 @@ public class ConditionalDemoConfig {
         return new SayYesComponent("Conditional");
     }
 
+
+    //TODO (2) web application 이 되도록 pom.xml 을 수정한다.
     /**
      * 웹어플리케이션이면 아래 빈을 생성한다.
      * @return
      */
-    //TODO (2) 웹어플리케이션이면 동작하도록하는  @ConditionalOnXXXX annotation 선언하기
+    @ConditionalOnWebApplication
     @Bean
     public SayYesComponent sayYesComponentWeb() {
         return new SayYesComponent("ConditionalOnWebApplication");
@@ -32,7 +35,7 @@ public class ConditionalDemoConfig {
      * 웹어플리케이션이 아니면 아래 빈을 생성한다.
      * @return
      */
-    //TODO (3) 웹어플리케이션이 아니면 동작하도록하는  @ConditionalOnXXXX annotation 선언하기
+    @ConditionalOnNotWebApplication
     @Bean
     public SayYesComponent sayYesComponentNotWeb() {
         return new SayYesComponent("ConditionalOnNotWebApplication");
@@ -40,56 +43,68 @@ public class ConditionalDemoConfig {
 
 
     /**
+     * TODO (3) SayNoComponent.class 타입의 빈이 등록되어 있으면 동작하도록하는  @ConditionalOnBean annotation 선언되어 있다.
+     * TODO (3) sayYesComponentOnBean 이 생성되도록 SayNoComponent 빈을 선언하자.
+     *
+     *
      * sayYesComponentNotWeb 빈이 등록되어 있으면 아래 빈을 생성한다.
      * @return
      */
-    //TODO (4) sayYesComponentNotWeb 빈이 등록되어 있으면 동작하도록하는  @ConditionalOnXXXX annotation 선언하기
+    @ConditionalOnBean(SayNoComponent.class)
     @Bean
     public SayYesComponent sayYesComponentOnBean() {
         return new SayYesComponent("ConditionalOnBean");
     }
 
     @Bean
-    @ConditionalOnMissingBean(name="sayYesComponentNotWeb")
+    @ConditionalOnMissingBean(SayNoComponent.class)
     public SayYesComponent sayYesComponentOnMissingBean() {
         return new SayYesComponent("ConditionalOnMissingBean");
     }
 
 
+    /**
+     * TODO (4) Yes 클래스가 존재하면 빈을 생성하는 @ConditionalOnClass annotation이 선언되어 있다.
+     * TODO (4) sayYesComponentOnClass 빈이 생성되도록 No 클래스를 rename 하자.
+     *
+     * @return
+     */
     @Bean
-    @ConditionalOnClass(value={SpringApplication.class})
+    @ConditionalOnClass(name={"com.nhnent.edu.springboot.autoconfig.conditional.conditionaldemo.component.Yes"})
     public SayYesComponent sayYesComponentOnClass() {
         return new SayYesComponent("ConditionalOnClass");
     }
 
     @Bean
-    @ConditionalOnMissingClass(value={"java.lang.String"})
+    @ConditionalOnMissingClass(value={"com.nhnent.edu.springboot.autoconfig.conditional.conditionaldemo.component.No"})
     public SayYesComponent sayYesComponentOnMissingClass() {
         return new SayYesComponent("ConditionalOnMissingClass");
     }
 
+    /**
+     * TODO (5) test property가 존재하면 빈을 생성하는 @ConditionalOnProperty annotation이 선언되어 있다.
+     * TODO (5) sayYesComponentOnProperty 빈이 생성되도록 application.properties파일을 수정하자.
+     *
+     * @return
+     */
     @Bean
     @ConditionalOnProperty(value="test")
     public SayYesComponent sayYesComponentOnProperty() {
         return new SayYesComponent("ConditionalOnProperty");
     }
+
+    /**
+     * TODO (6) test.txt 파일이 존재하면 빈을 생성하는 @ConditionalOnResource annotation이 선언되어 있다.
+     * TODO (6) sayYesComponentOnResource 빈이 생성되도록 test.txt 파일을 생성하자.
+     *
+     * @return
+     */
     @Bean
     @ConditionalOnResource(resources = {"classpath:/test.txt"})
     public SayYesComponent sayYesComponentOnResource() {
         return new SayYesComponent("ConditionalOnResource");
     }
 
-    class SayYesComponent{
-        private String name;
-
-        public SayYesComponent(String name) {
-            this.name = name;
-        }
-
-        public void sayYes() {
-            System.out.println("Y!E!S! " + this.name);
-        }
-    }
 
     static class PropertyCheckCondition implements Condition {
 
