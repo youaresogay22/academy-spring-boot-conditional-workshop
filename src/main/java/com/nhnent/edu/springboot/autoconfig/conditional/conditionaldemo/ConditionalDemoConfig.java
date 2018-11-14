@@ -9,6 +9,18 @@ import org.springframework.core.type.AnnotatedTypeMetadata;
 @Configuration
 public class ConditionalDemoConfig {
 
+    static class PropertyCheckCondition implements Condition {
+        @Override
+        public boolean matches(ConditionContext conditionContext, AnnotatedTypeMetadata annotatedTypeMetadata) {
+            // TODO (1)  application.properties 파일에 test1 property 가 존재하면 true 를 반환하도록 수정하세요.
+            // TODO (1)  アプリケーション.properties ファイルにテスト1 property が存在したらtrue を返却するように修正してください。
+
+            // Hint property 가져 오기 conditionContext.getEnvironment().getProperty("test1")
+            // Hint property 持って来るconditionContext.getEnvironment()getProperty( "test1")
+            return false;
+        }
+    }
+
     /**
      * PropertyCheckCondition 이 true 를 반환하면 sayYesComponent 를 생성한다.
      * PropertyCheckConditionがtrueを返却したら,sayYesComponentを生成する。
@@ -110,7 +122,7 @@ public class ConditionalDemoConfig {
      * @return
      */
     @Bean
-    @ConditionalOnProperty(value="test")
+    @ConditionalOnProperty(value="test2")
     public SayYesComponent sayYesComponentOnProperty() {
         return new SayYesComponent("ConditionalOnProperty");
     }
@@ -127,15 +139,5 @@ public class ConditionalDemoConfig {
         return new SayYesComponent("ConditionalOnResource");
     }
 
-
-    static class PropertyCheckCondition implements Condition {
-
-        @Override
-        public boolean matches(ConditionContext conditionContext, AnnotatedTypeMetadata annotatedTypeMetadata) {
-            // TODO (1)  application.properties 파일에 test property 가 존재하면 true 를 반환
-            // Hint property 가져 오기 conditionContext.getEnvironment().getProperty("test")
-            return false;
-        }
-    }
 }
 
