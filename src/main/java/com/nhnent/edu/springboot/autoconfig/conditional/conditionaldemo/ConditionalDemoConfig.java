@@ -10,7 +10,9 @@ import org.springframework.core.type.AnnotatedTypeMetadata;
 public class ConditionalDemoConfig {
 
     /**
-     * application.properties 파일에 test property 가 존재하면 아래 빈을 생성한다.
+     * PropertyCheckCondition 이 true 를 반환하면 sayYesComponent 를 생성한다.
+     * PropertyCheckConditionがtrueを返却したら,sayYesComponentを生成する。
+     *
      * @return
      */
     @Bean
@@ -20,9 +22,12 @@ public class ConditionalDemoConfig {
     }
 
 
-    //TODO (2) web application 이 되도록 pom.xml 을 수정한다.
+    //TODO (2) 이 프로젝트가 web application 이 되도록 pom.xml의 의존성을 수정해 주세요.
+    //TODO (2) このプロジェクトがweb application となるように,pom.xml の依存性を修正してください。
     /**
-     * 웹어플리케이션이면 아래 빈을 생성한다.
+     * 이 프로젝트가 web application 이면 sayYesComponentWeb 빈을 생성한다.
+     * このプロジェクトがweb application の裏面sayYesComponentWeb ウィーンを生成する。
+     *
      * @return
      */
     @ConditionalOnWebApplication
@@ -32,7 +37,9 @@ public class ConditionalDemoConfig {
     }
 
     /**
-     * 웹어플리케이션이 아니면 아래 빈을 생성한다.
+     * 이 프로젝트가  web application 이 아니면 sayYesComponentNotWeb 빈을 생성한다.
+     * このプロジェクトがweb application でなければsayYesComponentNotWeb ウィーンを生成する。
+     *
      * @return
      */
     @ConditionalOnNotWebApplication
@@ -43,11 +50,17 @@ public class ConditionalDemoConfig {
 
 
     /**
-     * TODO (3) SayNoComponent.class 타입의 빈이 등록되어 있으면 동작하도록하는  @ConditionalOnBean annotation 선언되어 있다.
-     * TODO (3) sayYesComponentOnBean 이 생성되도록 SayNoComponent 빈을 선언하자.
+     *  SayNoComponent.class 타입의 빈이 등록되어 있으면 동작하도록하는  @ConditionalOnBean annotation 선언되어 있다.
+     *  SayNoComponent.class タイプのウィーンが登録されていれば動作するようにする @ConditionalOnBean annotation 宣言されている。
      *
+     * TODO (3) sayYesComponentOnBean 빈이 생성되도록 SayNoComponent 빈을 선언해 주세요.
+     * TODO (3) sayYesComponentOnBeanウィーンが生成されるようにSayNoComponentウィーンを宣言してください。
+     */
+
+    /**
+     * 프로젝트에 SayNoComponent 타입의 빈이 등록되어 있으면 아래 빈을 생성합니다.
+     * プロジェクトに SayNoComponent タイプのウィーンが登録されていると,下記のウィーンを生成します。
      *
-     * sayYesComponentNotWeb 빈이 등록되어 있으면 아래 빈을 생성한다.
      * @return
      */
     @ConditionalOnBean(SayNoComponent.class)
@@ -56,6 +69,12 @@ public class ConditionalDemoConfig {
         return new SayYesComponent("ConditionalOnBean");
     }
 
+    /**
+     * 프로젝트에 SayNoComponent 타입의 빈이 등록되어 있지 않으면 아래 빈을 생성합니다.
+     * プロジェクトにSayNoComponentタイプのウィーンが登録されていないと,下記のウィーンを生成します。
+     *
+     * @return
+     */
     @Bean
     @ConditionalOnMissingBean(SayNoComponent.class)
     public SayYesComponent sayYesComponentOnMissingBean() {
@@ -64,8 +83,11 @@ public class ConditionalDemoConfig {
 
 
     /**
-     * TODO (4) Yes 클래스가 존재하면 빈을 생성하는 @ConditionalOnClass annotation이 선언되어 있다.
-     * TODO (4) sayYesComponentOnClass 빈이 생성되도록 No 클래스를 rename 하자.
+     * Yes 라는 이름의 클래스가 존재하면 빈을 생성하는 @ConditionalOnClass annotation이 선언되어 있습니다.
+     * Yesという名前のクラスが存在すると,ウィーンを生成する@ConditionalOnClassannotationが宣言されています。
+     *
+     * TODO (4) sayYesComponentOnClass 빈이 생성되도록 No 클래스의 이름을 수정해 주세요.
+     * TODO (4) sayYesComponentOnClassウィーンが生成されるようにNoクラスの名前を修正してください。
      *
      * @return
      */
