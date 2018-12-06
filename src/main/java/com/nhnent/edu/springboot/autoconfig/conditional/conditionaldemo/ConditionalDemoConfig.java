@@ -116,8 +116,11 @@ public class ConditionalDemoConfig {
     }
 
     /**
-     * TODO (5) test property가 존재하면 빈을 생성하는 @ConditionalOnProperty annotation이 선언되어 있다.
-     * TODO (5) sayYesComponentOnProperty 빈이 생성되도록 application.properties파일을 수정하자.
+     * TODO (5) test2 property가 존재하면 빈을 생성하는 @ConditionalOnProperty annotation이 선언되어 있습니다.
+     * TODO (5) sayYesComponentOnProperty 빈이 생성되도록 application.properties파일을 수정해 주세요.
+     * 
+     * TODO (5) test2 propertyが存在する場合、空のを生成する@ConditionalOnProperty annotationが宣言されています。
+     * TODO (5) sayYesComponentOnPropertyビン生成されるようapplication.propertiesファイルを修正してください。
      *
      * @return
      */
@@ -128,8 +131,11 @@ public class ConditionalDemoConfig {
     }
 
     /**
-     * TODO (6) test.txt 파일이 존재하면 빈을 생성하는 @ConditionalOnResource annotation이 선언되어 있다.
-     * TODO (6) sayYesComponentOnResource 빈이 생성되도록 test.txt 파일을 생성하자.
+     * TODO (6) test.txt 파일이 존재하면 빈을 생성하는 @ConditionalOnResource annotation이 선언되어 있습니다.
+     * TODO (6) sayYesComponentOnResource 빈이 생성되도록 src/main/resources 디렉토리에 test.txt 파일을 생성해 주세요.
+     * 
+     * TODO (6) test.txtファイルが存在する場合、空のを生成する@ConditionalOnResource annotationが宣言されています。
+     * TODO (6) sayYesComponentOnResourceビン生成されるように、src/main/resourcesディレクトリにtest.txtファイルを生成してください。
      *
      * @return
      */

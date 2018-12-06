@@ -4,11 +4,11 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.nhnent.edu.springboot.autoconfig.conditional</groupId>
-	<artifactId>conditional-demo</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<artifactId>edu-springboot-conditional-workshop</artifactId>
+	<version>1.0.0-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
-	<name>conditional-demo</name>
+	<name>edu-springboot-conditional-workshop</name>
 	<description>Demo project for Spring Boot</description>
 
 	<parent>
