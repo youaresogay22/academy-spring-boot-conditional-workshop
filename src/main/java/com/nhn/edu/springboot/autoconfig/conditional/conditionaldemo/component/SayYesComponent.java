@@ -1,4 +1,4 @@
-package com.nhnent.edu.springboot.autoconfig.conditional.conditionaldemo.component;
+package com.nhn.edu.springboot.autoconfig.conditional.conditionaldemo.component;
 
 public class SayYesComponent{
     private String name;
@@ -8,6 +8,6 @@ public class SayYesComponent{
     }
 
     public void sayYes() {
-        System.out.println("Y!E!S! " + this.name);
+        System.out.println("YES! " + this.name);
     }
 }

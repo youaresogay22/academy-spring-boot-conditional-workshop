@@ -1,13 +1,13 @@
-package com.nhnent.edu.springboot.autoconfig.conditional.conditionaldemo;
+package com.nhn.edu.springboot.autoconfig.conditional.conditionaldemo;
 
-import com.nhnent.edu.springboot.autoconfig.conditional.conditionaldemo.component.SayNoComponent;
-import com.nhnent.edu.springboot.autoconfig.conditional.conditionaldemo.component.SayYesComponent;
+import com.nhn.edu.springboot.autoconfig.conditional.conditionaldemo.component.SayNoComponent;
+import com.nhn.edu.springboot.autoconfig.conditional.conditionaldemo.component.SayYesComponent;
 import org.springframework.boot.autoconfigure.condition.*;
 import org.springframework.context.annotation.*;
 import org.springframework.core.type.AnnotatedTypeMetadata;
 
 @Configuration
-public class ConditionalDemoConfig {
+public class ConditionalDemoConfiguration {
 
     static class PropertyCheckCondition implements Condition {
         @Override
@@ -16,7 +16,7 @@ public class ConditionalDemoConfig {
             // TODO (1)  アプリケーション.properties ファイルにテスト1 property が存在したらtrue を返却するように修正してください。
 
             // Hint property 가져 오기 conditionContext.getEnvironment().getProperty("test1")
-            // Hint property 持って来るconditionContext.getEnvironment()getProperty( "test1")
+            // Hint property 持って来るconditionContext.getEnvironment().getProperty( "test1")
             return false;
         }
     }
@@ -104,28 +104,26 @@ public class ConditionalDemoConfig {
      * @return
      */
     @Bean
-    @ConditionalOnClass(name={"com.nhnent.edu.springboot.autoconfig.conditional.conditionaldemo.component.Yes"})
+    @ConditionalOnClass(name={"com.nhn.edu.springboot.autoconfig.conditional.conditionaldemo.component.Yes"})
     public SayYesComponent sayYesComponentOnClass() {
         return new SayYesComponent("ConditionalOnClass");
     }
 
     @Bean
-    @ConditionalOnMissingClass(value={"com.nhnent.edu.springboot.autoconfig.conditional.conditionaldemo.component.No"})
+    @ConditionalOnMissingClass(value={"com.nhn.edu.springboot.autoconfig.conditional.conditionaldemo.component.No"})
     public SayYesComponent sayYesComponentOnMissingClass() {
         return new SayYesComponent("ConditionalOnMissingClass");
     }
 
     /**
-     * TODO (5) test2 property가 존재하면 빈을 생성하는 @ConditionalOnProperty annotation이 선언되어 있습니다.
-     * TODO (5) sayYesComponentOnProperty 빈이 생성되도록 application.properties파일을 수정해 주세요.
+     * TODO (5) test2 property가 존재하면 빈을 생성하도록 @ConditionalOnProperty annotation을 적절히 선언해 주세요.
      * 
-     * TODO (5) test2 propertyが存在する場合、空のを生成する@ConditionalOnProperty annotationが宣言されています。
-     * TODO (5) sayYesComponentOnPropertyビン生成されるようapplication.propertiesファイルを修正してください。
+     * TODO (5) test2 propertyが存在する場合、空のを生成するように@ConditionalOnProperty annotationを適切に宣言してください。
      *
      * @return
      */
     @Bean
-    @ConditionalOnProperty(value="test2")
+    @ConditionalOnProperty(name="")
     public SayYesComponent sayYesComponentOnProperty() {
         return new SayYesComponent("ConditionalOnProperty");
     }
