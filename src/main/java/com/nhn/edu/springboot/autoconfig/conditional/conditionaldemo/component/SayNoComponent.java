@@ -1,4 +1,4 @@
-package com.nhnent.edu.springboot.autoconfig.conditional.conditionaldemo.component;
+package com.nhn.edu.springboot.autoconfig.conditional.conditionaldemo.component;
 
 public class SayNoComponent {
     private String name;
