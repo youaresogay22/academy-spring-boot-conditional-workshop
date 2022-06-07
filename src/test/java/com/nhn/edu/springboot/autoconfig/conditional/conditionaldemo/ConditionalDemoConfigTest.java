@@ -1,26 +1,23 @@
 package com.nhn.edu.springboot.autoconfig.conditional.conditionaldemo;
 
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.AutoConfigurations;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.runner.ApplicationContextRunner;
 import org.springframework.context.ApplicationContext;
-import org.springframework.test.context.junit4.SpringRunner;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 
 /**
  * 아래의 모든 테스트 케이스가 성공할 수 있도록 프로젝트를 수정해 주세요.
  * 下記のすべてのテストケースが成功できるようにプロジェクトを修正してください。
  */
-@RunWith(SpringRunner.class)
 @SpringBootTest
-public class ConditionalDemoConfigTest {
+class ConditionalDemoConfigTest {
 
     private final ApplicationContextRunner contextRunner
         = new ApplicationContextRunner()
@@ -35,7 +32,7 @@ public class ConditionalDemoConfigTest {
      * このテストを成功するには,TODO(1)を修正してください。
      */
     @Test
-    public void sayYesComponent() {
+    void sayYesComponent() {
         this.contextRunner
             .withPropertyValues("test1=zbum")
             .run(context -> assertThat(context).hasBean("sayYesComponent"));
