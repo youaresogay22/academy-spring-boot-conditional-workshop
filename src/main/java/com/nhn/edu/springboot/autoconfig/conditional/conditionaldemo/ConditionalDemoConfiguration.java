@@ -17,8 +17,10 @@ public class ConditionalDemoConfiguration {
 
             // Hint property 가져 오기 conditionContext.getEnvironment().getProperty("test1")
             // Hint property 持って来るconditionContext.getEnvironment().getProperty( "test1")
-            return false;
 
+            if (conditionContext.getEnvironment().getProperty("test1") != null){
+                return true;
+            } else return false;
         }
     }
 
@@ -69,6 +71,11 @@ public class ConditionalDemoConfiguration {
      * TODO (3) sayYesComponentOnBean 빈이 생성되도록 SayNoComponent 빈을 선언해 주세요.
      * TODO (3) sayYesComponentOnBeanウィーンが生成されるようにSayNoComponentウィーンを宣言してください。
      */
+    @Bean
+    public SayNoComponent SayNoComponent() {
+        return new SayNoComponent("Conditional");
+    }
+
 
     /**
      * 프로젝트에 SayNoComponent 타입의 빈이 등록되어 있으면 아래 빈을 생성합니다.
@@ -124,7 +131,7 @@ public class ConditionalDemoConfiguration {
      * @return
      */
     @Bean
-    @ConditionalOnProperty(name="")
+    @ConditionalOnProperty(name="test2")
     public SayYesComponent sayYesComponentOnProperty() {
         return new SayYesComponent("ConditionalOnProperty");
     }
